@@ -1,0 +1,20 @@
+<p>The latest time is: <b>{{currentTime}}</b></p><hr/>
+
+Enter Value: <input (keyup)="inputValueChanged($event)" 
+                    type="text" [value]="inputValue" /><br/><br/>
+
+Enter Value 2 Way Data Binding: <input type="text" [(ngModel)]="inputValue" /><br/><br/>
+
+<b>Input Value is {{inputValue}}</b><br/><br/>
+
+<input type="button" 
+       value="Click To Change Input Value Counter" (click)="inputValueChange()" 
+       style="margin-right: 10px;" /><br/><br/><hr/>
+
+
+
+<b>Counter value is {{counter}}</b><br/><br/>
+<input type="button" 
+       value="Click To Increment Counter" (click)="incrementCounter()" 
+       style="margin-right: 10px;" />
+<input type="button" value="Update Counter" (click)="modifyCounter()" />
