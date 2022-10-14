@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CommonModule} from "@angular/common";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
+import EmployeeService from '../services/employee-service';
 
 @Component({
   selector: 'app-emp-details-api',
@@ -9,8 +10,8 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
 })
 
 export class EmpDetailsApiComponent {
-  constructor(private _httpClient: HttpClient) {
-    this._httpClient.get("https://5a530e1477e1d20012fa066a.mockapi.io/login").subscribe((response) => {
+  constructor(private _empService: EmployeeService) {
+    this._empService.getEmployeeDetailsObservable().subscribe((response) => {
       this.employeeDetails = response;
       this.filterList = this.employeeDetails;
     }, (error: Error) => {
@@ -40,19 +41,28 @@ export class EmpDetailsApiComponent {
     
   }
   deleteEmployeeList(employeeId:number){
-    this.employeeDetails=this.employeeDetails.filter((employee:any)=>{
-       return employee.id!=+employeeId;
-    })
-    this.filterList=this.employeeDetails;
-    this.filterText="";
+    this._empService.deleteEmployee(employeeId).subscribe(() => {
+      this.employeeDetails = this.employeeDetails.filter((employee: any) => {
+        return +employee.id != +employeeId;
+      });
+      
+      this.filterList = this.employeeDetails;
+      this.filterText = "";
+      debugger;
+      this._empService.getEmployeeDetailsAndNotify();
+    }, () => {
+      alert("Failed to Delete Employee with id: " + employeeId)
+    });
   }
   addEmployee() {
-    if (this.newEmployee.name && this.newEmployee.id && this.newEmployee.avatar && this.newEmployee.createdAt) {
+    this._empService.addEmployee(this.newEmployee.name, this.newEmployee.id).subscribe(() => {
+      debugger;
       this.employeeDetails.push(this.newEmployee);
       this.filterList = this.employeeDetails;
       this.filterText = "";
       this.clearValue();
-    }
+      this._empService.getEmployeeDetailsAndNotify();
+    });
   }
   clearValue() {
     this.newEmployee = {

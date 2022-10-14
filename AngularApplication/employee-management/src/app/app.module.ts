@@ -7,12 +7,14 @@ import { FormsModule } from "@angular/forms";
 import { EmpDetailsComponent } from './emp-details/emp-details.component';
 import { EmpDetailsApiComponent } from './emp-details-api/emp-details-api.component';
 import { HttpClientModule } from "@angular/common/http";
+import { EmpCountComponent } from './emp-count/emp-count.component';
+import { ChildComponentComponent } from './child-component/child-component.component';
 
 
 
 @NgModule({
-    declarations: [EmployeeListingComponent, EmployeeDetailsComponent, LatestTimeComponent, EmpDetailsComponent, EmpDetailsComponent, EmpDetailsApiComponent],
+    declarations: [EmployeeListingComponent, EmployeeDetailsComponent, LatestTimeComponent, EmpDetailsComponent, EmpDetailsComponent, EmpDetailsApiComponent, EmpCountComponent, ChildComponentComponent],
     imports: [ BrowserModule, FormsModule, HttpClientModule ],
-    bootstrap: [EmpDetailsApiComponent]
+    bootstrap: [EmpDetailsApiComponent, EmpCountComponent ]
 })
 export default class AppModule { }
