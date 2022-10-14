@@ -9,12 +9,13 @@ import { EmpDetailsApiComponent } from './emp-details-api/emp-details-api.compon
 import { HttpClientModule } from "@angular/common/http";
 import { EmpCountComponent } from './emp-count/emp-count.component';
 import { ChildComponentComponent } from './child-component/child-component.component';
+import { StockDataComponent } from './stock-data/stock-data.component';
 
 
 
 @NgModule({
-    declarations: [EmployeeListingComponent, EmployeeDetailsComponent, LatestTimeComponent, EmpDetailsComponent, EmpDetailsComponent, EmpDetailsApiComponent, EmpCountComponent, ChildComponentComponent],
+    declarations: [EmployeeListingComponent, EmployeeDetailsComponent, LatestTimeComponent, EmpDetailsComponent, EmpDetailsComponent, EmpDetailsApiComponent, EmpCountComponent, ChildComponentComponent, StockDataComponent],
     imports: [ BrowserModule, FormsModule, HttpClientModule ],
-    bootstrap: [EmpDetailsApiComponent, EmpCountComponent ]
+    bootstrap: [StockDataComponent,EmpDetailsApiComponent, EmpCountComponent ]
 })
 export default class AppModule { }

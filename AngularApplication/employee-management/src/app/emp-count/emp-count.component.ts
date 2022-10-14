@@ -10,10 +10,15 @@ import EmployeeService from '../services/employee-service';
 export class EmpCountComponent {
   empCount: number = 0;
   colorData: string = "grey";
+  otherCount: number = 100;
   constructor(private _empService: EmployeeService) { }
   changeColor() {
     this.colorData = "red";
+  setInterval(() => {
+      this.otherCount = this.otherCount + 1
+    }, 5000)
   }
+  
   getEmployees() {
     if (this._empService.employeeList.length) {
       this.empCount = this._empService.employeeList.length

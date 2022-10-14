@@ -1,5 +1,10 @@
 <div style="padding: 10px; margin: 5px;">
     <h1 [style.color]="colorData">Employee Count is: {{empCount}}</h1>
     <input style="display: inline-block;" type="button" (click)="getEmployees()" value="Get Count" /><br/><br/>
-    <app-child-component [countData]="empCount" (triggerParent)="changeColor()"></app-child-component>
+    <b>Parent otherCount data {{otherCount}}</b>    
+    <app-child-component 
+        [otherCount]="otherCount" 
+        [countData]="empCount" 
+        (triggerParent)="changeColor()">
+    </app-child-component>
 </div>
